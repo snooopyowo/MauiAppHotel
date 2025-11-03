@@ -10,5 +10,9 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellItem Title="Sobre" Icon="info.png">
+        <ShellContent ContentTemplate="{DataTemplate views:Sobre}" />
+    </ShellItem>
+
 
 </Shell>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHotel.Views.ContratacaoHospedagem"
+             Title="Contratação de Hospedagem"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F3F6F8">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#005F73</Color>
+            <Color x:Key="AccentColor">#EE9B00</Color>
+            <Color x:Key="LightBackground">#FFFFFF</Color>
+            <Color x:Key="BorderColor">#DADADA</Color>
+            <Color x:Key="TextDark">#1A1A1A</Color>
+            <Color x:Key="TextSecondary">#5C5C5C</Color>
+
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="FontFamily" Value="Kalam" />
+                <Setter Property="FontSize" Value="48" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SectionLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <Label Text="Cálculo da Diária"
+                   Style="{StaticResource TitleLabelStyle}" />
+
+            <Frame Padding="15" BackgroundColor="{StaticResource LightBackground}" BorderColor="{StaticResource BorderColor}" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+
+                    <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="*, *, 2*"
+                          ColumnSpacing="10"
+                          RowSpacing="10">
+
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Adultos:" TextColor="{StaticResource TextDark}" />
+                        <Label Grid.Row="0" Grid.Column="1"
+                               TextColor="{StaticResource PrimaryColor}"
+                               Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_adultos}"/>
+                        <Stepper Grid.Row="0" Grid.Column="2"
+                                 x:Name="stp_adultos"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1"
+                                 BackgroundColor="#E8F3F3" />
+
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Text="Crianças:" TextColor="{StaticResource TextDark}" />
+                        <Label Grid.Row="1" Grid.Column="1"
+                               TextColor="{StaticResource PrimaryColor}"
+                               Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_criancas}"/>
+                        <Stepper Grid.Row="1" Grid.Column="2"
+                                 x:Name="stp_criancas"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1"
+                                 BackgroundColor="#E8F3F3" />
+                    </Grid>
+
+                    <Frame Padding="10" Margin="10,0" BackgroundColor="#FAFAFA" BorderColor="{StaticResource BorderColor}" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="Escolha sua Suíte"
+                                   Style="{StaticResource SectionLabelStyle}" />
+                            <Picker x:Name="pck_quarto"
+                                    Title="Selecione sua Acomodação"
+                                    TextColor="{StaticResource TextDark}"
+                                    BackgroundColor="#EAF2F2" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame Padding="10" Margin="10,0" BackgroundColor="#FAFAFA" BorderColor="{StaticResource BorderColor}" CornerRadius="10">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Período da Estadia"
+                                   Style="{StaticResource SectionLabelStyle}" />
+
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                                <Label Text="Check-in:" TextColor="{StaticResource TextSecondary}" />
+                                <DatePicker x:Name="dtpck_checkin"
+                                            Format="dd/MM/yyyy"
+                                            TextColor="{StaticResource TextDark}" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                                <Label Text="Check-out:" TextColor="{StaticResource TextSecondary}" />
+                                <DatePicker x:Name="dtpck_checkout"
+                                            Format="dd/MM/yyyy"
+                                            TextColor="{StaticResource TextDark}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Button Text="Avançar"
+                            Clicked="Button_Clicked"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+
+                    <Button Text="Sobre"
+                            Clicked="Button_Clicked_1"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
